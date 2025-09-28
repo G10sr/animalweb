@@ -49,7 +49,7 @@ export class App {
 
   get detailsOpen(): boolean {
     // Pantallas grandes siempre abierto
-    return this.screenWidth > 500 || this.detailsOpenUser;
+    return this.screenWidth > 720 || this.detailsOpenUser;
   }
 
   private safeIncludes(text: string | undefined | null, searchText: string): boolean {
