@@ -35,6 +35,7 @@ export class App {
 
     searchText = searchText.toLowerCase();
     this.filteredCards = this.allCards.filter(card => 
+      (card.id && card.id.toString().includes(searchText)) ||
       card.nombreComun.toLowerCase().includes(searchText) ||
       card.nombreCientifico.toLowerCase().includes(searchText) ||
       card.clasificacion.toLowerCase().includes(searchText) ||
