@@ -8,15 +8,15 @@ div{
     text-overflow: ellipsis;
     background-color: rgba(71, 71, 71, 0.575);
 
-    &.terrestre {
-      background-color: rgba(104, 223, 35, 0.575); // Verde
-    }
-    
     &.aereo-terrestre {
       background-color: rgba(169, 169, 169, 0.575); // Gris
     }
     
-    &.acuático {
+    &.terrestre {
+      background-color: rgba(104, 223, 35, 0.575); // Verde
+    }
+    
+    &.acuatico {
       background-color: rgba(135, 206, 235, 0.575); // Azul claro
     }
  img {

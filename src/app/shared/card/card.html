@@ -1,8 +1,4 @@
-<div class="card" [ngClass]="{
-    'terrestre': card.habitat.toLowerCase().includes('terrestre'),
-    'aereo-terrestre': card.habitat.toLowerCase().includes('aereo-terrestre'),
-    'acuático': card.habitat.toLowerCase().includes('acuático')
-  }">
+<div class="card" [class]="getHabitatClass(card.habitat)">
   <img *ngIf="card.imagen" [src]="card.imagen" alt="{{ card.nombreComun }}">
   <p><small>{{card.id}}</small></p>
   <h3>{{ card.nombreComun }} (<i>{{ card.nombreCientifico }}</i>)</h3>
