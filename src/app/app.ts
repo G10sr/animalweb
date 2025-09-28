@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Header } from './shared/header/header';
 import { CardService, CardData } from './services/card.service';
@@ -19,6 +19,11 @@ export class App {
   filteredCards: CardData[] = [];
   cards$: Observable<CardData[]>;
 
+  screenWidth = typeof window !== 'undefined' ? window.innerWidth : 1024;
+
+  // Control del estado de detalles en móviles
+  detailsOpenUser = false;
+
   constructor(private cardService: CardService) {
     this.cards$ = this.cardService.getCards();
     this.cards$.subscribe((cards: CardData[]) => {
@@ -27,40 +32,39 @@ export class App {
     });
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(_: Event) {
+    this.screenWidth = window.innerWidth;
+  }
+
+  // Toggle manual: se llama desde (click) en summary
+  toggleDetails(event: MouseEvent) {
+    event.preventDefault(); // evita comportamiento nativo de <details>
+    
+    if (this.screenWidth <= 500) {
+      this.detailsOpenUser = !this.detailsOpenUser; // solo móviles
+    }
+    // pantallas grandes >500px: no hace nada, siempre abierto
+  }
+
+  get detailsOpen(): boolean {
+    // Pantallas grandes siempre abierto
+    return this.screenWidth > 500 || this.detailsOpenUser;
+  }
+
   private safeIncludes(text: string | undefined | null, searchText: string): boolean {
     return text ? text.toLowerCase().includes(searchText) : false;
   }
 
   onSearch(searchText: string) {
-    console.log('Search received in App:', searchText); // Debug
-    console.log('Current cards:', this.allCards); // Debug
-
     if (!searchText || !searchText.trim()) {
-      console.log('Empty search, showing all cards'); // Debug
       this.filteredCards = [...this.allCards];
       return;
     }
 
     searchText = searchText.toLowerCase().trim();
-    console.log('Searching for:', searchText); // Debug
-
     this.filteredCards = this.allCards.filter(card => {
-      if (!card) {
-        console.log('Found null card'); // Debug
-        return false;
-      }
-
-      // Debug log para cada card
-      console.log('Checking card:', {
-        id: card.id,
-        nombre: card.nombreComun,
-        cientifico: card.nombreCientifico,
-        clasificacion: card.clasificacion,
-        habitat: card.habitat,
-        alimentacion: card.alimentacion,
-        reproduccion: card.reproduccion,
-        caracteristicas: card.caracteristicas
-      });
+      if (!card) return false;
 
       const matches = [
         card.id?.toString().toLowerCase().includes(searchText),
@@ -73,11 +77,7 @@ export class App {
         card.caracteristicas?.toLowerCase().includes(searchText)
       ].some(match => match === true);
 
-      console.log('Card matches:', matches); // Debug
       return matches;
     });
-
-    console.log('Filtered cards:', this.filteredCards); // Debug
   }
-
 }

@@ -32,7 +32,15 @@
 </div>
 <app-header (search)="onSearch($event)"></app-header> 
 <main class="main">
-<app-add-animal></app-add-animal>
+  <div id="detailsd">
+  <app-add-animal></app-add-animal>
+<details [open]="detailsOpen">
+  <summary (click)="toggleDetails($event)"><strong>La Isla del Coco</strong></summary>
+    La Isla del Coco, ubicada en el Pacífico de Costa Rica, es considerada un santuario natural de gran valor mundial. Su biodiversidad es extraordinaria: alberga bosques tropicales, cascadas y una enorme variedad de especies terrestres y marinas. Es hogar de tiburones martillo, mantarrayas, delfines y tortugas, además de aves y plantas endémicas que no se encuentran en ningún otro lugar del planeta. Gracias a esta riqueza única, la isla es Patrimonio Natural de la Humanidad y un laboratorio vivo para la conservación de la naturaleza. 
+    <br>
+    <img src="https://th.bing.com/th/id/R.75ab9a8cd4281c8348090bd1ec6e69b5?rik=f7JIx5ugpiTbzg&pid=ImgRaw&r=0">
+  </details>
+  </div>
 <br style="height: 5vh;">
 <div class="card-container">
   <app-card *ngFor="let card of filteredCards" [card]="card"></app-card>
