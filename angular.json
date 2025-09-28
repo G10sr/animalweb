@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "mi-app:build:production"
+              "buildTarget": "animalweb:build:production"
             },
             "development": {
-              "buildTarget": "mi-app:build:development"
+              "buildTarget": "animalweb:build:development"
             }
           },
           "defaultConfiguration": "development"

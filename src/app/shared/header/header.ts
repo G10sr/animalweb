@@ -14,19 +14,14 @@ export class Header {
   @Output() search = new EventEmitter<string>();
 
   onSearchChange(event: any): void {
-    // Emitimos el evento de búsqueda solo si hay texto
-    if (this.searchText.trim()) {
-      this.search.emit(this.searchText);
-    } else {
-      this.clearSearch();
-    }
+    console.log('Search text changed:', this.searchText); // Debug
+    this.search.emit(this.searchText);
   }
 
   onSubmit(event: Event): void {
     event.preventDefault();
-    if (this.searchText.trim()) {
-      this.search.emit(this.searchText);
-    }
+    console.log('Form submitted with:', this.searchText); // Debug
+    this.search.emit(this.searchText);
   }
 
   clearSearch(): void {
