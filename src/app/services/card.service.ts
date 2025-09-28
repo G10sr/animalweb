@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collectionData, collection } from '@angular/fire/firestore';
+import { Firestore, collectionData, collection, addDoc, doc, setDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 export interface CardData {
@@ -22,27 +22,20 @@ export class CardService {
     const cardsCollection = collection(this.firestore, 'cards');
     return collectionData(cardsCollection, { idField: 'id' }) as Observable<CardData[]>;
   }
-}
-import {  addDoc, doc, setDoc } from '@angular/fire/firestore';
-
-@Injectable({ providedIn: 'root' })
-export class CardProviderInyecter {
-  constructor(private firestore: Firestore) {}
-
-  getCards(): Observable<CardData[]> {
-    const cardsCollection = collection(this.firestore, 'cards');
-    return collectionData(cardsCollection, { idField: 'id' }) as Observable<CardData[]>;
-  }
 
   // Método para agregar un card con ID automático
-  addCard(card: Omit<CardData, 'id'>) {
+  async addCard(card: Omit<CardData, 'id'>): Promise<string> {
     const cardsCollection = collection(this.firestore, 'cards');
-    return addDoc(cardsCollection, card);
+    const docRef = await addDoc(cardsCollection, card);
+    return docRef.id;
   }
 
   // Método para agregar un card con ID específico
-  addCardWithId(id: string, card: Omit<CardData, 'id'>) {
+  async addCardWithId(id: string, card: Omit<CardData, 'id'>): Promise<void> {
+    if (!id?.trim()) {
+      throw new Error('El ID es requerido');
+    }
     const cardDoc = doc(this.firestore, `cards/${id}`);
-    return setDoc(cardDoc, card);
+    await setDoc(cardDoc, card);
   }
 }

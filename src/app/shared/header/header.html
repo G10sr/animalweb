@@ -1,4 +1,15 @@
 <header class="header">
     <img src="logo.png">
     <h2>Isla del Coco - Animales</h2>
+    <form class="form__group" (ngSubmit)="onSubmit($event)">
+        <input type="input" 
+               class="form__field" 
+               placeholder="Buscar" 
+               name="buscar" 
+               id='buscar' 
+               [(ngModel)]="searchText"
+               (input)="onSearchChange($event)"
+               required />
+        <label for="buscar" class="form__label">Buscar</label>
+    </form>
 </header>

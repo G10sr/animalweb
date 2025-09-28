@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  apiUrl: 'http://localhost:3000', // URL del servidor backend
   firebase: {
     apiKey: "AIzaSyBer9Y1p70zQ5X3Ls0VGSctNcjM5I5TwdA",
     authDomain: "animalweb-c0bd4.firebaseapp.com",

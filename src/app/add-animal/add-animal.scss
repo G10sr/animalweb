@@ -1,14 +1,12 @@
 form {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
   max-width: 900px;
-  margin: 2rem auto;
   padding: 2rem;
   background: #f9fafb;
   border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);    
   input,
   textarea {
     padding: 0.75rem 1rem;
@@ -17,7 +15,6 @@ form {
     font-size: 1rem;
     width: 90%;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
-
     &:focus {
       outline: none;
       border-color: #3b82f6;
@@ -25,14 +22,9 @@ form {
     }
   }
 
-  textarea {
-    grid-column: 1 / -1; // ocupa toda la fila
-    resize: vertical;
-    min-height: 120px;
-  }
 
   button {
-    grid-column: 1 / -1;
+    grid-column: span 2;
     padding: 0.9rem 1.2rem;
     background: #3b82f6;
     color: white;

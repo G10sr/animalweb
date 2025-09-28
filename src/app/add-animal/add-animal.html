@@ -1,11 +1,30 @@
-<form #animalForm="ngForm" (ngSubmit)="addAnimal(animalForm)">
-  <input name="nombreComun" ngModel placeholder="Nombre Común" required>
-  <input name="nombreCientifico" ngModel placeholder="Nombre Científico" required>
-  <input name="clasificacion" ngModel placeholder="Clasificación" required>
-  <input name="habitat" ngModel placeholder="Hábitat" required>
-  <input name="alimentacion" ngModel placeholder="Alimentación" required>
-  <input name="reproduccion" ngModel placeholder="Reproducción" required>
-  <textarea name="caracteristicas" ngModel placeholder="Características" required></textarea>
-  <input name="imagen" ngModel placeholder="URL de la imagen" required="">
-  <button type="submit">Agregar Animal</button>
+<form #animalForm="ngForm" (ngSubmit)="addCardWithId(idInput.value, animalForm)">
+  <div class="form-group">
+    <input #idInput name="id" ngModel placeholder="ID del Animal" required>
+  </div>
+  <div class="form-group">
+    <input name="nombreComun" ngModel placeholder="Nombre Común" required>
+  </div>
+  <div class="form-group">
+    <input name="nombreCientifico" ngModel placeholder="Nombre Científico" required>
+  </div>
+  <div class="form-group">
+    <input name="clasificacion" ngModel placeholder="Clasificación" required>
+  </div>
+  <div class="form-group">
+    <input name="habitat" ngModel placeholder="Hábitat" required>
+  </div>
+  <div class="form-group">
+    <input name="alimentacion" ngModel placeholder="Alimentación" required>
+  </div>
+  <div class="form-group">
+    <input name="reproduccion" ngModel placeholder="Reproducción" required>
+  </div>
+  <div class="form-group">
+    <textarea name="caracteristicas" ngModel placeholder="Características" required></textarea>
+  </div>
+  <div class="form-group">
+    <input name="imagen" ngModel placeholder="URL de la imagen" required>
+  </div>
+  <button type="submit" [disabled]="!animalForm.valid || !idInput.value.trim()">Agregar Animal</button>
 </form>
