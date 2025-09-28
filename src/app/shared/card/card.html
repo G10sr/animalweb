@@ -1,0 +1,10 @@
+<div class="card">
+  <img *ngIf="card.imagen" [src]="card.imagen" alt="{{ card.nombreComun }}">
+  <h3>{{ card.nombreComun }} (<i>{{ card.nombreCientifico }}</i>)</h3>
+  <p><strong>Clasificación:</strong> {{ card.clasificacion }}</p>
+  <p><strong>Hábitat:</strong> {{ card.habitat }}</p>
+  <p><strong>Alimentación:</strong> {{ card.alimentacion }}</p>
+  <p><strong>Reproducción:</strong> {{ card.reproduccion }}</p>
+  <p><strong>Características:</strong> {{ card.caracteristicas }}</p>
+  
+</div>

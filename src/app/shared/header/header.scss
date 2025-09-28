@@ -1,0 +1,16 @@
+  header{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 1rem;
+    background-color: aqua;
+    img{
+      height: 16vh;
+      width: auto;
+    }
+  }
