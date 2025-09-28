@@ -41,7 +41,7 @@ export class App {
   toggleDetails(event: MouseEvent) {
     event.preventDefault(); // evita comportamiento nativo de <details>
     
-    if (this.screenWidth <= 500) {
+    if (this.screenWidth <= 720) {
       this.detailsOpenUser = !this.detailsOpenUser; // solo móviles
     }
     // pantallas grandes >500px: no hace nada, siempre abierto
