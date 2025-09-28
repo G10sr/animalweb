@@ -22,10 +22,11 @@ div{
  img {
     width: 100%;
     max-width: auto;
-    height: auto;
+    height: 200px;
     border-radius: 12px;
     margin-bottom: 0.5rem;
-    object-fit: fill;
+    object-fit: cover;
+    object-position: center;
   }
   p, h3{
     margin: 4%;
